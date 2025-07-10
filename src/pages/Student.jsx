@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Details = () => {
+const Student = () => {
   return (
-    <div>Details</div>
+    <div>Student</div>
   )
 }
 
-export default Details
+export default Student
