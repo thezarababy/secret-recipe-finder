@@ -11,7 +11,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({title, textColor, bgColor, borderColor, iconTitle}) => {
   return (
     <div>
-        <button className='px-5 py-3 rounded-xl w-max pointer hover:text-xl'
+        <button className='px-5 py-3 rounded-xl w-max hover:text-xl hover: cursor-pointer'
         style={{
                 color: `${textColor}`,
                 backgroundColor: `${bgColor}`,
