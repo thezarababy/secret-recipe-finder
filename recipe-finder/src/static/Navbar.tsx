@@ -1,15 +1,15 @@
 import Logo from "../assets/Logo.png";
 import { FcSearch } from "react-icons/fc";
 import Button from "../component/reuseable/Button";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div className="max-w-[1280px] mx-auto bg-white  shadow-lg">
       <main className="flex justify-between items-center px-6 ">
-        <Link to="/">
+        <NavLink to="/">
           <img src={Logo} alt="logo" className="h-30 w-auto" />
-        </Link>
+        </NavLink>
 
         <div className="flex gap-5 items-center justify-center">
           <input
@@ -21,17 +21,17 @@ const Navbar = () => {
         </div>
 
         <div className="flex gap-8 ">
-          <Link to="/signUp">
+          <NavLink to="/signUp">
             <Button
               title="Create account"
               borderColor=" 2px solid #FE7B23"
               textColor="black"
             />
-          </Link>
+          </NavLink>
 
-          <Link to="/logIn">
+          <NavLink to="/logIn">
             <Button title="Log In" bgColor="#FE7B23" textColor="white" />
-          </Link>
+          </NavLink>
         </div>
       </main>
     </div>

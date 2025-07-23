@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import RecipeCard from "../component/reuseable/RecipeCard";
-import axios from "axios";
+
 import { ClimbingBoxLoader } from "react-spinners";
-interface mealsType {
-  idMeal: string;
-  strMeal: string;
-  strMealThumb: string;
-}
+// Make sure the following is exported in Interface.ts:
+// export type items = { ... } or export interface items { ... }
+import type { mealsType } from "../interface/Interface";
+import Instance from "../api/Instance";
 
 const Home = () => {
   const [meal, setMeal] = useState<mealsType[] | null>([]);
@@ -16,14 +14,10 @@ const Home = () => {
   const fetchMeal = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(
-        "https://www.themealdb.com/api/json/v1/1/random.php"
-      );
-
+      const res = await Instance.get("/search.php?s");
+      console.log(meal);
       setMeal(res.data.meals);
       setLoading(false);
-
-      console.log(res.data);
     } catch {
       // setError(true);
     } finally {
@@ -36,15 +30,28 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Browse your Fvourite meals </h1>
+    <div className="max-w-[1280px] mx-auto">
+      <h1 className="text-3xl font-bold text-center my-6">
+        Discover Delicious Recipes Instantly{" "}
+      </h1>
 
       {loading ? (
         <ClimbingBoxLoader />
       ) : (
-        <section>
-          {meal?.map((items) => (
-            <RecipeCard key={items.idMeal} items={items} />
+        <section className=" flex flex-wrap justify-center gap-6 ">
+          {meal?.map((items: mealsType) => (
+            <main
+              key={items.idMeal}
+              className="w-60 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out rounded-2xl "
+            >
+              <img src={items.strMealThumb} alt="" className=" rounded-t-2xl" />
+
+              <div className="pl-4  font-semibold">
+                <p>{items.strMeal}</p>
+                <p> Category: {items.strCategory}</p>
+                <p>Country: {items.strArea}</p>
+              </div>
+            </main>
           ))}
         </section>
       )}
