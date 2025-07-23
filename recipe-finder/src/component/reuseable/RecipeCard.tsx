@@ -1,9 +1,20 @@
-import React from 'react'
-
-const RecipeCard = () => {
-  return (
-    <div>RecipeCard</div>
-  )
+interface mealsType {
+  items: {
+    idMeal: string;
+    strMeal: string;
+    strMealThumb: string;
+  };
 }
 
-export default RecipeCard
+function RecipeCard({ items }: mealsType) {
+  return (
+    <div>
+      <p> {items.strMeal} </p>
+
+
+      <img src={items.strMealThumb} alt="" />
+    </div>
+  );
+}
+
+export default RecipeCard;
