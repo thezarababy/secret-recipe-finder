@@ -11,7 +11,7 @@ interface mealsType {
 const Home = () => {
   const [meal, setMeal] = useState<mealsType[] | null>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  // const [error, setError] = useState<boolean>(false);
 
   const fetchMeal = async () => {
     setLoading(true);
@@ -25,7 +25,7 @@ const Home = () => {
 
       console.log(res.data);
     } catch {
-      setError(true);
+      // setError(true);
     } finally {
       setLoading(false);
     }

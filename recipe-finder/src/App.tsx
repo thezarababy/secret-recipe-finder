@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -12,15 +11,14 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomeLayout />}> 
-         <Route index element={<Home />} />
+        <Route path="/" element={<HomeLayout />}>
+          <Route index element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/favorite" element={<Favorites />} />
           <Route path="/logIn" element={<Login />} />
         </Route>
-        
+
         <Route path="/signUp" element={<SignUp />} />
-       
       </Routes>
     </BrowserRouter>
   );
