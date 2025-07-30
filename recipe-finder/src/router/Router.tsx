@@ -36,10 +36,6 @@ const mainRoute = createBrowserRouter([
         path: "/favorite",
         element: <Favorites />,
       },
-      {
-        path: "/recipeDetails",
-        element: <RecipeDetails />,
-      },
     ],
   },
 ]);
