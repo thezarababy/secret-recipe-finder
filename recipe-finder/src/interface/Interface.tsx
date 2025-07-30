@@ -6,4 +6,5 @@ export interface mealsType {
   strArea: string;
   strInstructions: string;
   strYoutube: string;
+  [key: string]: any;
 }

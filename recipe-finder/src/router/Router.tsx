@@ -29,7 +29,7 @@ const mainRoute = createBrowserRouter([
         element: <Category />,
       },
       {
-        path: "/details",
+        path: "/details/:id",
         element: <RecipeDetails />,
       },
       {

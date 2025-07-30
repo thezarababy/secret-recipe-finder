@@ -49,7 +49,7 @@ const Home = () => {
       ) : (
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center">
           {meal?.map((items: mealsType) => (
-            <Link to={`/recipeDetails/${items.idMeal}`} key={items.idMeal}>
+            <Link to={`/details/${items.idMeal}`} key={items.idMeal}>
               <main
                 key={items.idMeal}
                 className="w-60 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out rounded-2xl "
