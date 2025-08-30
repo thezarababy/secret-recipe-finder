@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Category from "../pages/Category";
 import RecipeDetails from "../pages/RecipeDetails";
 import Favorites from "../pages/Favorites";
+import SearchPage from "../pages/searchPage";
 
 const mainRoute = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const mainRoute = createBrowserRouter([
       {
         path: "/favorite",
         element: <Favorites />,
+      },
+      {
+        path: "/search",
+        element: <SearchPage />,
       },
     ],
   },

@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-
 import { ClimbingBoxLoader } from "react-spinners";
-// Make sure the following is exported in Interface.ts:
-// export type items = { ... } or export interface items { ... }
 import type { mealsType } from "../interface/Interface";
 import Instance from "../api/Instance";
 import { Link } from "react-router-dom";

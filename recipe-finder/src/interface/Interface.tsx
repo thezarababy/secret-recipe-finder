@@ -8,3 +8,7 @@ export interface mealsType {
   strYoutube: string;
   [key: string]: any;
 }
+
+export interface SearchBarProps {
+  onSearch: (query: string) => void;
+}
