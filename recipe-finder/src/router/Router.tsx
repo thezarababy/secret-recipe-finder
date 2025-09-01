@@ -6,7 +6,7 @@ import Login from "../pages/Login";
 import Category from "../pages/Category";
 import RecipeDetails from "../pages/RecipeDetails";
 import Favorites from "../pages/Favorites";
-import SearchPage from "../pages/searchPage";
+import SearchPage from "../pages/SearchPage";
 
 const mainRoute = createBrowserRouter([
   {
