@@ -31,8 +31,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="max-w-[1280px] mx-auto">
-      <h1 className="text-3xl font-bold text-center my-6">
+    <div className=" w-fit mx-auto py-16">
+      <h1 className="text-3xl font-bold text-center my-6 pb-7">
         Discover Delicious Recipes Instantly{" "}
       </h1>
       {error && (
@@ -49,7 +49,7 @@ const Home = () => {
             <Link to={`/details/${items.idMeal}`}>
               <main
                 key={items.idMeal}
-                className="w-60 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out rounded-2xl "
+                className="w-60 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out rounded-2xl gap-10 "
               >
                 <img
                   src={items.strMealThumb}
@@ -57,7 +57,7 @@ const Home = () => {
                   className=" rounded-t-2xl"
                 />
 
-                <div className="pl-4  font-semibold">
+                <div className="pl-4 py-6  font-semibold">
                   <p>{items.strMeal}</p>
                   <p> Category: {items.strCategory}</p>
                   <p>Country: {items.strArea}</p>

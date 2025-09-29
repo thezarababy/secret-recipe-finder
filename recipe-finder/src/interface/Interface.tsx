@@ -12,3 +12,13 @@ export interface mealsType {
 export interface SearchBarProps {
   onSearch: (query: string) => void;
 }
+export interface NavbarProps {
+  onOpenSidebar: () => void;
+  collapsed: boolean;
+  setCollapsed: (value: boolean) => void;
+}
+export interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+  collapsed: boolean;
+}
