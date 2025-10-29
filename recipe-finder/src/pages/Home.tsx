@@ -31,7 +31,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className=" w-fit mx-auto py-16">
+    <div className=" w-fit mx-auto py-16 px-9 max-sm:px-4">
       <h1 className="text-3xl font-bold text-center my-6 pb-7 max-sm:text-2xl">
         Discover Delicious Recipes Instantly{" "}
       </h1>
