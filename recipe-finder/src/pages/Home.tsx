@@ -31,8 +31,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className=" w-fit mx-auto py-16 px-9 max-sm:px-4">
-      <h1 className="text-3xl font-bold text-center my-6 pb-7 max-sm:text-2xl">
+    <div className=" w-fit mx-auto py-9 px-9 max-sm:px-4">
+      <h1 className="text-3xl font-bold text-center pb-5 max-sm:text-lg">
         Discover Delicious Recipes Instantly{" "}
       </h1>
       {error && (

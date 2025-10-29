@@ -14,7 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
     navigate(`/search?query=${encodeURIComponent(q.trim())}`);
   };
   return (
-    <div className="w-full bg-white shadow-lg">
+    <div className="w-full bg-white shadow-lg pr-3">
       <main className="flex justify-between items-center  py-3">
         {/* logo */}
         <div>
