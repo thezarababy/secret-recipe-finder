@@ -13,13 +13,17 @@ import { IoIosLogIn } from "react-icons/io";
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, collapsed }) => {
   return (
     <div
-      className={` md:static top-0 left-0 h-full bg-white shadow-lg z-50  
+      className={` md:block md:static top-0 left-0 h-full   bg-white shadow-lg z-50  
       transition-all duration-300 
       ${collapsed ? "w-20" : "w-64"}
-      ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+      ${
+        isOpen
+          ? "translate-x-0"
+          : "-translate-x-full md:translate-x-0 hidden md:block"
+      }`}
     >
       {/* Mobile Header */}
-      <div className="flex justify-between items-center p-4 border-b md:hidden">
+      <div className="flex justify-between items-center p-4 border-b   w-full md:hidden">
         <h2 className="text-xl font-bold">Menu</h2>
         <button onClick={onClose}>
           <MdOutlineClose size={24} />

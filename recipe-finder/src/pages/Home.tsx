@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <div className=" w-fit mx-auto py-16">
-      <h1 className="text-3xl font-bold text-center my-6 pb-7">
+      <h1 className="text-3xl font-bold text-center my-6 pb-7 max-sm:text-2xl">
         Discover Delicious Recipes Instantly{" "}
       </h1>
       {error && (
@@ -44,12 +44,12 @@ const Home = () => {
       {loading ? (
         <ClimbingBoxLoader className="flex justify-center items-center" />
       ) : (
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center max-sm:grid-cols-2">
           {meal?.map((items: mealsType) => (
             <Link to={`/details/${items.idMeal}`}>
               <main
                 key={items.idMeal}
-                className="w-60 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out rounded-2xl gap-10 "
+                className=" shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out rounded-2xl gap-10  "
               >
                 <img
                   src={items.strMealThumb}

@@ -2,15 +2,11 @@ import Logo from "../assets/Logo.png";
 import Button from "../component/reuseable/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import Searchbar from "../component/Searchbar";
-import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
+
 import { CgMenuOreos } from "react-icons/cg";
 import type { NavbarProps } from "../interface/Interface";
 
-const Navbar: React.FC<NavbarProps> = ({
-  onOpenSidebar,
-  collapsed,
-  setCollapsed,
-}) => {
+const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
   const navigate = useNavigate();
 
   const handleSearchFromNavbar = (q: string) => {
@@ -19,27 +15,15 @@ const Navbar: React.FC<NavbarProps> = ({
   };
   return (
     <div className="w-full bg-white shadow-lg">
-      <main className="flex justify-between items-center px-6 py-3">
-        {/* Collapse button (desktop only) */}
-        <div className="hidden md:flex items-center gap-2">
-          <button
-            onClick={() => setCollapsed(!collapsed)}
-            className="p-2 rounded-md bg-gray-100 hover:bg-gray-200"
-          >
-            {collapsed ? (
-              <FaCircleChevronRight size={20} />
-            ) : (
-              <FaCircleChevronLeft size={20} />
-            )}
-          </button>
-          {!collapsed && (
-            <NavLink to="/">
-              <img src={Logo} alt="logo" className="h-12 w-auto" />
-            </NavLink>
-          )}
+      <main className="flex justify-between items-center  py-3">
+        {/* logo */}
+        <div>
+          <NavLink to="/">
+            <img src={Logo} alt="logo" className="h-12 w-auto" />
+          </NavLink>
         </div>
 
-        {/* Searchbar (desktop) */}
+        {/* searchbar */}
         <div className="hidden md:block">
           <Searchbar onSearch={handleSearchFromNavbar} />
         </div>
