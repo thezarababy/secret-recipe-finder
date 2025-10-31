@@ -29,6 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       <nav className="flex flex-col gap-4 p-4">
         <NavLink
           to="/"
+          onClick={onClose}
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
@@ -36,6 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         </NavLink>
         <NavLink
           to="/search"
+          onClick={onClose}
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
@@ -43,6 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         </NavLink>
         <NavLink
           to="/category"
+          onClick={onClose}
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
@@ -50,6 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         </NavLink>
         <NavLink
           to="/Favorite"
+          onClick={onClose}
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
@@ -57,6 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         </NavLink>
         <NavLink
           to="/logIn"
+          onClick={onClose}
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
@@ -64,6 +69,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         </NavLink>
         <NavLink
           to="/signUp"
+          onClick={onClose}
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
