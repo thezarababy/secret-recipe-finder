@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import type { SidebarProps } from "../../interface/Interface";
-
 import {
   MdOutlineClose,
   MdOutlineYoutubeSearchedFor,
@@ -10,25 +9,22 @@ import { VscHeartFilled } from "react-icons/vsc";
 import { FaUserPlus, FaHome } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, collapsed }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   return (
     <div
-      className={` md:block md:static top-0 left-0 h-full   bg-white shadow-lg z-50  
-      transition-all duration-300 
-      ${collapsed ? "w-20" : "w-64"}
-      ${
-        isOpen
-          ? "translate-x-0"
-          : "-translate-x-full md:translate-x-0 hidden md:block"
-      }`}
+      className={`fixed top-0 left-0 w-screen h-screen bg-white z-50 flex flex-col items-center justify-center transition-transform duration-300 ease-in-out ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } md:hidden`} // Hides sidebar completely on desktop
     >
       {/* Mobile Header */}
-      <div className="flex justify-between items-center p-4 border-b   w-full md:hidden">
-        <h2 className="text-xl font-bold">Menu</h2>
-        <button onClick={onClose}>
-          <MdOutlineClose size={24} />
-        </button>
-      </div>
+
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 text-gray-700"
+      >
+        <MdOutlineClose size={24} />
+      </button>
+
       {/* Nav Links */}
       <nav className="flex flex-col gap-4 p-4">
         <NavLink
@@ -36,42 +32,42 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, collapsed }) => {
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
-          <FaHome /> {!collapsed && "Home"}
+          <FaHome /> Home
         </NavLink>
         <NavLink
           to="/search"
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
-          <MdOutlineYoutubeSearchedFor /> {!collapsed && "Search"}
+          <MdOutlineYoutubeSearchedFor /> Search
         </NavLink>
         <NavLink
           to="/category"
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
-          <MdOutlineFolderShared /> {!collapsed && "Category"}
+          <MdOutlineFolderShared /> Category
         </NavLink>
         <NavLink
           to="/Favorite"
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
-          <VscHeartFilled /> {!collapsed && "Favorite"}
+          <VscHeartFilled /> Favorites
         </NavLink>
         <NavLink
           to="/logIn"
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
-          <IoIosLogIn /> {!collapsed && "Login"}
+          <IoIosLogIn /> Login
         </NavLink>
         <NavLink
           to="/signUp"
           className="flex items-center gap-3 hover:text-orange-500"
         >
           {" "}
-          <FaUserPlus /> {!collapsed && "Sign Up"}
+          <FaUserPlus /> Sign Up
         </NavLink>
       </nav>
     </div>

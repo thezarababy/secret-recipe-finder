@@ -15,10 +15,8 @@ export interface SearchBarProps {
 export interface NavbarProps {
   onOpenSidebar: () => void;
   collapsed: boolean;
-  setCollapsed: (value: boolean) => void;
 }
 export interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  collapsed: boolean;
 }

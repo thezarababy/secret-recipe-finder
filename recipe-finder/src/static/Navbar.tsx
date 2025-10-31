@@ -2,7 +2,6 @@ import Logo from "../assets/Logo.png";
 import Button from "../component/reuseable/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import Searchbar from "../component/Searchbar";
-
 import { CgMenuOreos } from "react-icons/cg";
 import type { NavbarProps } from "../interface/Interface";
 
@@ -45,7 +44,11 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
           </div>
 
           {/* Hamburger for mobile */}
-          <button className="md:hidden" onClick={onOpenSidebar}>
+          <button
+            className="md:hidden"
+            onClick={onOpenSidebar}
+            aria-label="Open sidebar"
+          >
             <CgMenuOreos size={30} />
           </button>
         </div>
