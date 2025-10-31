@@ -19,4 +19,5 @@ export interface NavbarProps {
 export interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  collapsed?: boolean;
 }

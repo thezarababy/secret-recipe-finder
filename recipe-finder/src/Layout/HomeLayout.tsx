@@ -12,7 +12,7 @@ const HomeLayout = () => {
       {/* Main content */}
       <div className="">
         {/* Navbar */}
-        <Navbar onOpenSidebar={() => setSidebarOpen(true)} />
+        <Navbar onOpenSidebar={() => setSidebarOpen(true)} collapsed={false} />
 
         {/* Page Content (fills space & pushes footer down) */}
         <main className=" flex w-full">
