@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
         {/* logo */}
         <div>
           <NavLink to="/">
-            <img src={Logo} alt="logo" className="h-12 w-auto" />
+            <img src={Logo} alt="logo" className="w-20" />
           </NavLink>
         </div>
 
