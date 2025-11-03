@@ -28,8 +28,25 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
         </div>
 
         {/* Right section */}
-        <div className="flex items-center gap-6">
-          <div className="hidden md:flex gap-4">
+        <div className="flex   items-center gap-6 ">
+          <div className="hidden md:flex gap-4 items-center ">
+            <NavLink to="/favorite">
+              <a
+                title="Favorites"
+                className="font-semibold hover:underline hover:cursor-pointer"
+              >
+                Favorites
+              </a>
+            </NavLink>
+
+            <NavLink to="/category">
+              <a
+                title="Category"
+                className="font-semibold  hover:underline hover:cursor-pointer"
+              >
+                Category
+              </a>
+            </NavLink>
             <NavLink to="/signUp">
               <Button
                 title="Create account"
