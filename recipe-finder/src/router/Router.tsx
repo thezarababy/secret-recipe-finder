@@ -11,19 +11,10 @@ import SearchPage from "../pages/SearchPage";
 const mainRoute = createBrowserRouter([
   {
     element: <HomeLayout />,
-
     children: [
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "/signUp",
-        element: <SignUp />,
-      },
-      {
-        path: "/logIn",
-        element: <Login />,
       },
       {
         path: "/category",
@@ -42,6 +33,14 @@ const mainRoute = createBrowserRouter([
         element: <SearchPage />,
       },
     ],
+  },
+  {
+    path: "/signUp",
+    element: <SignUp />,
+  },
+  {
+    path: "/logIn",
+    element: <Login />,
   },
 ]);
 
