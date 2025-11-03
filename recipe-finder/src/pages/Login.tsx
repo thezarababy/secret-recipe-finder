@@ -14,7 +14,7 @@ const Login = () => {
       <h1 className="font-bold text-4xl text-center my-8 max-sm:text-2xl max-sm:font-semibold ">
         Welcome back
       </h1>
-      <section className=" w-full max-w-[500px]  px-7 flex flex-col gap-7">
+      <section className=" w-full max-w-[500px]  mx-auto px-7 flex flex-col  gap-7">
         <div>
           <input
             type="text"
