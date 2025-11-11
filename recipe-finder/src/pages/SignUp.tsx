@@ -1,19 +1,17 @@
-import signup from "../assets/signup.mp4";
+import bgFood1 from "../assets/bgFood1.jpg";
 const SignUp = () => {
   return (
-    <div className="flex  items-center w-full gap-10 mx-auto">
-      <section className="max-w-[800px]">
-        <video
-          controls
-          className=" rounded-lg shadow-sm"
-          poster="../assets/signup-poster.jpg" // optional poster image
-        >
-          <source src={signup} type="video/mp4" />
-        </video>
+    <div className="grid grid-cols-2 gap-8 w-full max-sm:grid-cols-1 max-sm:gap-4  pb-10 px-6">
+      <section className="h-screen ">
+        <img
+          src={bgFood1}
+          alt="Delicious food"
+          className="w-full h-full object-cover"
+        />
       </section>
-      <section>
-        <h1>Join Our Food Community</h1>
-        <p>Find your next favorite recipe</p>
+      <section className="flex flex-col items-center py-40 gap-8">
+        <h1 className="text-5xl font-bold">Join Our Food Community</h1>
+        <i className="my-0">Find your next favorite recipe</i>
         <main>
           <div>
             <label htmlFor="fullName">Full Name</label>
