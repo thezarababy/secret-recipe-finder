@@ -1,16 +1,18 @@
 import bgFood2 from "../assets/bgFood2.jpg";
 const SignUp = () => {
   return (
-    <div className="grid grid-cols-2 gap-8 w-full h-screen bg-orange-100 max-sm:grid-cols-1 max-sm:gap-4  pb-10 px-6">
-      <section className="h-screen ">
+    <div className="grid grid-cols-1 lg:grid-col-2 gap-8 w-full h-screen bg-orange-100    ">
+      <section className=" hidden h-screen lg:block   ">
         <img
           src={bgFood2}
           alt="Delicious food"
           className="w-full h-full object-cover"
         />
       </section>
-      <section className=" flex flex-col  gap-7 py-40 pl-40">
-        <h1 className="text-5xl font-bold">Join Our Food Community</h1>
+      <section className=" flex flex-col px-5 gap-7 py-40 lg:pl-40">
+        <h1 className="  text-3xl lg:text-5xl font-bold">
+          Join Our Food Community
+        </h1>
         <i className="-mt-4">Find your next favorite recipe!</i>
         <form action="" className=" flex flex-col gap-5">
           <div className="">
@@ -18,7 +20,7 @@ const SignUp = () => {
               type="text"
               id="fullName"
               placeholder="Enter your full name"
-              className="rounded-lg border-0 bg-gray-300 ml-2 px-3 py-2 w-full max-w-[600px]"
+              className="rounded-lg border-0 bg-gray-300  px-3 py-2 w-full max-w-[600px]"
             />
           </div>
           <div>
@@ -26,7 +28,7 @@ const SignUp = () => {
               type="text"
               id="email"
               placeholder="Enter your email"
-              className="rounded-lg border-0 bg-gray-300 ml-2 px-3 py-2 w-full max-w-[600px]"
+              className="rounded-lg border-0 bg-gray-300  px-3 py-2 w-full max-w-[600px]"
             />
           </div>
           <div>
@@ -34,7 +36,7 @@ const SignUp = () => {
               type="text"
               id="password"
               placeholder="Enter your password"
-              className="rounded-lg border-0 bg-gray-300 ml-2 px-3 py-2  w-full max-w-[600px]"
+              className="rounded-lg border-0 bg-gray-300  px-3 py-2  w-full max-w-[600px]"
             />
           </div>
           <button
