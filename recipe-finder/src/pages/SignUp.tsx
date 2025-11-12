@@ -1,7 +1,7 @@
 import bgFood2 from "../assets/bgFood2.jpg";
 const SignUp = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-col-2 gap-8 w-full h-screen bg-orange-100    ">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full h-screen bg-white    ">
       <section className=" hidden h-screen lg:block   ">
         <img
           src={bgFood2}
@@ -9,7 +9,7 @@ const SignUp = () => {
           className="w-full h-full object-cover"
         />
       </section>
-      <section className=" flex flex-col px-5 gap-7 py-40 lg:pl-40">
+      <section className=" flex flex-col px-5 gap-7 py-40 ">
         <h1 className="  text-3xl lg:text-5xl font-bold">
           Join Our Food Community
         </h1>
