@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { mealsType } from "../interface/Interface";
 import Instance from "../api/Instance";
 import { ClimbingBoxLoader } from "react-spinners";
+import { FaRegHeart } from "react-icons/fa6";
 
 const RecipeDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -28,7 +29,7 @@ const RecipeDetails = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="mx-auto">
       {loading ? (
         <ClimbingBoxLoader className="flex justify-center items-center  " />
       ) : error ? (
@@ -43,16 +44,26 @@ const RecipeDetails = () => {
             alt={meal?.strMeal}
             className="w-full rounded-xl mb-6"
           />
-          <p className="mb-2">
-            <strong>Category:</strong> {meal?.strCategory}
-          </p>
-          <p className="mb-2">
-            <strong>Area:</strong> {meal?.strArea}
-          </p>
-          <p className="mb-4">
-            <strong>Instructions:</strong>
-          </p>
-          <p className="whitespace-pre-line">{meal?.strInstructions}</p>
+          <section className="flex  justify-between">
+            <div>
+              <p className="mb-2">
+                <strong>Category:</strong> {meal?.strCategory}
+              </p>
+              <p className="mb-2">
+                <strong>Area:</strong> {meal?.strArea}
+              </p>
+              <p className="mb-4">
+                <strong>Instructions:</strong>
+              </p>
+              <p className="whitespace-pre-line">{meal?.strInstructions}</p>
+            </div>
+
+            <div>
+              <button>
+                <FaRegHeart size={45} className="text-red-500" />
+              </button>
+            </div>
+          </section>
         </div>
       )}
     </div>
