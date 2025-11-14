@@ -5,13 +5,28 @@ import type { mealsType } from "../interface/Interface";
 import Instance from "../api/Instance";
 import { ClimbingBoxLoader } from "react-spinners";
 import { FaRegHeart } from "react-icons/fa6";
+import useFavorites from "../hooks/useFavorites";
+import type { RecipeCardProps } from "../interface/Interface";
+import { toast, Toaster } from "react-hot-toast";
 
-const RecipeDetails = () => {
+const RecipeDetails: React.FC<RecipeCardProps> = ({ recipe }) => {
   const { id } = useParams<{ id: string }>();
-  console.log(id);
   const [meal, setMeal] = useState<mealsType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+
+  const handleFavorite = () => {
+    if (isFavorite(recipe.idMeal)) {
+      removeFromFavorites(recipe.idMeal);
+      toast.error("Removed from favorites");
+    } else {
+      addToFavorites(recipe);
+      toast.success("Added to favorites ❤️");
+    }
+    //hide message after 3secs
+    setTimeout(() => toast.dismiss(), 3000);
+  };
 
   const fetchRecipeDetails = async () => {
     setLoading(true);
@@ -30,6 +45,7 @@ const RecipeDetails = () => {
 
   return (
     <div className="mx-auto">
+      <Toaster position="top-center" />
       {loading ? (
         <ClimbingBoxLoader className="flex justify-center items-center  " />
       ) : error ? (
@@ -59,7 +75,7 @@ const RecipeDetails = () => {
             </div>
 
             <div>
-              <button>
+              <button onClick={handleFavorite}>
                 <FaRegHeart size={45} className="text-red-500" />
               </button>
             </div>

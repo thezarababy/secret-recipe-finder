@@ -21,3 +21,6 @@ export interface SidebarProps {
   onClose: () => void;
   collapsed?: boolean;
 }
+export interface RecipeCardProps {
+  recipe: mealsType;
+}
