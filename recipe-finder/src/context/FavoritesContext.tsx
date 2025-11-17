@@ -6,20 +6,27 @@ export const FavoritesProvider = ({ children }: any) => {
   const [favorites, setFavorites] = useState<any[]>([]);
 
   // load from localStorage once
+
+  // Load once from localStorage
   useEffect(() => {
     const stored = localStorage.getItem("favorites");
-    setFavorites(stored ? JSON.parse(stored) : []);
-  }, []);
 
+    if (stored) {
+      console.log("📦 Loaded from localStorage:", JSON.parse(stored));
+      setFavorites(JSON.parse(stored));
+    }
+  }, []);
   // save to localStorage whenever favorites change
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   const addToFavorites = (recipe: any) => {
-    setFavorites((prev) => {
-      if (prev.some((item) => item.idMeal === recipe.idMeal)) return prev;
-      return [...prev, recipe];
+    setFavorites((prev: any) => {
+      if (!prev.find((item: any) => item.idMeal === recipe.idMeal)) {
+        return [...prev, recipe];
+      }
+      return prev;
     });
   };
 
