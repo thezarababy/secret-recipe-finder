@@ -22,5 +22,5 @@ export interface SidebarProps {
   collapsed?: boolean;
 }
 export interface RecipeCardProps {
-  recipe: mealsType;
+  recipe?: mealsType;
 }

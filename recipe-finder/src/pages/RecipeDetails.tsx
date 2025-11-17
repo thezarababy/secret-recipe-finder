@@ -5,9 +5,10 @@ import type { mealsType } from "../interface/Interface";
 import Instance from "../api/Instance";
 import { ClimbingBoxLoader } from "react-spinners";
 import { FaRegHeart } from "react-icons/fa6";
-import useFavorites from "../hooks/useFavorites";
+import { useFavorites } from "../context/FavoritesContext";
 import type { RecipeCardProps } from "../interface/Interface";
 import { toast, Toaster } from "react-hot-toast";
+import { FaHeart } from "react-icons/fa";
 
 const RecipeDetails: React.FC<RecipeCardProps> = ({ recipe }) => {
   const { id } = useParams<{ id: string }>();
@@ -16,16 +17,45 @@ const RecipeDetails: React.FC<RecipeCardProps> = ({ recipe }) => {
   const [error, setError] = useState<boolean>(false);
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
 
+  // use whichever is available: prop (from card) or fetched meal
+  const current = (recipe as any) || meal;
+
+  // local toggle state to control filled heart immediately
+  const [isFavLocal, setIsFavLocal] = useState<boolean>(() =>
+    Boolean(current?.idMeal && isFavorite(current.idMeal))
+  );
+  // sync local state when current or favorites change
+  useEffect(() => {
+    const idKey = current?.idMeal;
+    if (idKey) setIsFavLocal(isFavorite(idKey));
+  }, [current, isFavorite]);
+
   const handleFavorite = () => {
-    if (isFavorite(recipe.idMeal)) {
-      removeFromFavorites(recipe.idMeal);
+    if (!current?.idMeal) {
+      toast.error("No recipe to add/remove");
+      return;
+    }
+
+    const idKey = current.idMeal;
+
+    if (isFavLocal || isFavorite(idKey)) {
+      removeFromFavorites(idKey);
+      setIsFavLocal(false);
       toast.error("Removed from favorites");
     } else {
-      addToFavorites(recipe);
+      // pass the minimal recipe object expected by favorites store
+      const favItem = {
+        idMeal: current.idMeal,
+        strMeal: current.strMeal,
+        strMealThumb: current.strMealThumb,
+      };
+      addToFavorites(favItem);
+      setIsFavLocal(true);
       toast.success("Added to favorites ❤️");
     }
-    //hide message after 3secs
-    setTimeout(() => toast.dismiss(), 3000);
+
+    // hide toast after 3 secs
+    setTimeout(() => toast.dismiss(), 5000);
   };
 
   const fetchRecipeDetails = async () => {
@@ -75,8 +105,17 @@ const RecipeDetails: React.FC<RecipeCardProps> = ({ recipe }) => {
             </div>
 
             <div>
-              <button onClick={handleFavorite}>
-                <FaRegHeart size={45} className="text-red-500" />
+              <button
+                onClick={handleFavorite}
+                aria-pressed={isFavLocal}
+                aria-label="toggle favorite"
+                className="focus:outline-none"
+              >
+                {isFavLocal ? (
+                  <FaHeart size={45} className="text-red-500" />
+                ) : (
+                  <FaRegHeart size={45} className="text-red-500" />
+                )}
               </button>
             </div>
           </section>

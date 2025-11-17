@@ -1,11 +1,12 @@
 import { RouterProvider } from "react-router-dom";
 import mainRoute from "./router/Router";
+import { FavoritesProvider } from "./context/FavoritesContext";
 
 const App = () => {
   return (
-    <div>
+    <FavoritesProvider>
       <RouterProvider router={mainRoute} />
-    </div>
+    </FavoritesProvider>
   );
 };
 
