@@ -11,7 +11,7 @@ export const FavoritesProvider = ({ children }: any) => {
     const stored = localStorage.getItem("favorites");
 
     if (stored) {
-      console.log("📦 Loaded from localStorage:", JSON.parse(stored));
+      //   console.log("📦 Loaded from localStorage:", JSON.parse(stored));
       setFavorites(JSON.parse(stored));
     }
   }, []);
@@ -20,6 +20,7 @@ export const FavoritesProvider = ({ children }: any) => {
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
+  console.log("favorites", favorites);
 
   const addToFavorites = (recipe: any) => {
     setFavorites((prev: any) => {
