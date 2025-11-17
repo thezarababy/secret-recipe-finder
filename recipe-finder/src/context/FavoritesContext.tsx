@@ -7,7 +7,6 @@ export const FavoritesProvider = ({ children }: any) => {
 
   // load from localStorage once
 
-  // Load once from localStorage
   useEffect(() => {
     const stored = localStorage.getItem("favorites");
 
@@ -16,6 +15,7 @@ export const FavoritesProvider = ({ children }: any) => {
       setFavorites(JSON.parse(stored));
     }
   }, []);
+
   // save to localStorage whenever favorites change
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));

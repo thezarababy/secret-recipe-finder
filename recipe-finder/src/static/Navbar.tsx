@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
         </div>
 
         {/* searchbar */}
-        <div className="hidden md:block">
+        <div className="  md:block">
           <Searchbar onSearch={handleSearchFromNavbar} />
         </div>
 

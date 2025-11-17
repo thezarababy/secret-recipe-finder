@@ -3,9 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { FcSearch } from "react-icons/fc";
 import type { SearchBarProps } from "../interface/Interface"; // optional: your interface file
 
-// If you don't have SearchBarProps in your interface file, you can use:
-// interface SearchBarProps { onSearch?: (query: string) => void; }
-
 const Searchbar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [query, setQuery] = useState<string>("");
   const navigate = useNavigate();
@@ -31,7 +28,7 @@ const Searchbar: React.FC<SearchBarProps> = ({ onSearch }) => {
         placeholder="Search recipes..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="border-2 border-orange-500 w-80 px-4 py-2 rounded-lg focus:outline-none"
+        className=" w-40 border-2 border-orange-500 md:w-80 px-4 py-2 rounded-lg focus:outline-none"
       />
       <button type="submit" className="text-gray-600 hover:text-black">
         <FcSearch size={28} />
