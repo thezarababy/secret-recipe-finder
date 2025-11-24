@@ -4,14 +4,44 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Searchbar from "../component/Searchbar";
 import { CgMenuOreos } from "react-icons/cg";
 import type { NavbarProps } from "../interface/Interface";
+import { useEffect, useState } from "react";
+import Instance, { CATEGORIES_URL } from "../api/Instance";
+import { FiFilter } from "react-icons/fi";
 
 const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
   const navigate = useNavigate();
 
+  const [categories, setCategories] = useState<string[]>([]);
+  const [openCategory, setOpenCategory] = useState(false);
+
+  // Fetch all categories
+  const getAllCategories = async () => {
+    try {
+      const res = await Instance.get(CATEGORIES_URL);
+      const categoryNames = res.data.meals.map((c: any) => c.strCategory);
+      setCategories(categoryNames);
+    } catch (error) {
+      console.log("error fetching categories");
+    }
+  };
+
+  //  Fetch categories on first render
+  useEffect(() => {
+    getAllCategories();
+  }, []);
+
+  //  When a user selects a category
+  const handleCategorySelect = (cat: string) => {
+    navigate(`/category?name=${encodeURIComponent(cat)}`);
+    setOpenCategory(false);
+  };
+
+  //  Search handler
   const handleSearchFromNavbar = (q: string) => {
     if (!q.trim()) return;
     navigate(`/search?query=${encodeURIComponent(q.trim())}`);
   };
+
   return (
     <div className="w-full bg-white shadow-lg pr-3">
       <main className="flex justify-between items-center  py-3">
@@ -23,34 +53,57 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
         </div>
 
         {/* searchbar */}
-        <div className="  md:block">
+        <div className="md:block">
           <Searchbar onSearch={handleSearchFromNavbar} />
         </div>
 
         {/* Right section */}
-        <div className="flex   items-center gap-6 ">
-          <div className="hidden md:flex gap-4 items-center ">
+        <div className="flex items-center gap-6">
+          <div className="hidden md:flex gap-4 items-center">
+            {/* Favorites */}
             <NavLink to="/favorite">
-              <a
-                title="Favorites"
-                className="font-semibold hover:underline hover:cursor-pointer"
-              >
+              <p className="font-semibold hover:underline cursor-pointer">
                 Favorites
-              </a>
+              </p>
             </NavLink>
 
-            <NavLink to="/category">
-              <a
-                title="Category"
-                className="font-semibold  hover:underline hover:cursor-pointer"
+            {/* Category Dropdown */}
+            <div className="relative">
+              <button
+                type="button"
+                className="font-semibold cursor-pointer flex items-center gap-1"
+                onClick={() => setOpenCategory((prev) => !prev)}
               >
+                <FiFilter size={18} />
                 Category
-              </a>
-            </NavLink>
+              </button>
+
+              {openCategory && (
+                <div className="absolute right-0 mt-2 bg-white shadow-xl rounded-md py-2 w-44 z-50 border border-gray-200">
+                  {categories.length === 0 ? (
+                    <p className="px-3 py-2 text-gray-500 text-sm">
+                      Loading...
+                    </p>
+                  ) : (
+                    categories.map((cat) => (
+                      <button
+                        key={cat}
+                        onClick={() => handleCategorySelect(cat)}
+                        className="block w-full text-left px-3 py-2 text-sm hover:bg-gray-100"
+                      >
+                        {cat}
+                      </button>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Auth Buttons */}
             <NavLink to="/signUp">
               <Button
                 title="Create account"
-                borderColor=" 2px solid #FE7B23"
+                borderColor="2px solid #FE7B23"
                 textColor="black"
               />
             </NavLink>
@@ -60,12 +113,8 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
             </NavLink>
           </div>
 
-          {/* Hamburger for mobile */}
-          <button
-            className="md:hidden"
-            onClick={onOpenSidebar}
-            aria-label="Open sidebar"
-          >
+          {/* Mobile sidebar toggle */}
+          <button className="md:hidden" onClick={onOpenSidebar}>
             <CgMenuOreos size={30} />
           </button>
         </div>
@@ -75,80 +124,3 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
 };
 
 export default Navbar;
-
-// import { useState } from "react";
-// import Logo from "../assets/Logo.png";
-// import Button from "../component/reuseable/Button";
-// import { NavLink, useNavigate } from "react-router-dom";
-// import Searchbar from "../component/Searchbar";
-// import { FaBars, FaTimes } from "react-icons/fa";
-
-// const Navbar = () => {
-//   const navigate = useNavigate();
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   const handleSearchFromNavbar = (q: string) => {
-//     if (!q.trim()) return;
-//     navigate(`/search?query=${encodeURIComponent(q.trim())}`);
-//   };
-
-//   return (
-//     <div className="w-full bg-white shadow-lg fixed top-0 left-0 z-50">
-//       <main className="flex justify-between items-center px-4 md:px-6 py-3 max-w-[1280px] mx-auto">
-//         {/* Logo */}
-//         <NavLink to="/" className="flex items-center">
-//           <img src={Logo} alt="logo" className="h-12 w-auto" />
-//         </NavLink>
-
-//         {/* Desktop Search */}
-//         <div className="hidden md:flex flex-1 mx-6">
-//           <Searchbar onSearch={handleSearchFromNavbar} />
-//         </div>
-
-//         {/* Desktop Buttons */}
-//         <div className="hidden md:flex gap-4">
-//           <NavLink to="/signUp">
-//             <Button
-//               title="Create account"
-//               borderColor="2px solid #FE7B23"
-//               textColor="black"
-//             />
-//           </NavLink>
-//           <NavLink to="/logIn">
-//             <Button title="Log In" bgColor="#FE7B23" textColor="white" />
-//           </NavLink>
-//         </div>
-
-//         {/* Mobile Hamburger */}
-//         <div className="md:hidden flex items-center">
-//           <button onClick={() => setIsOpen(!isOpen)}>
-//             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-//           </button>
-//         </div>
-//       </main>
-
-//       {/* Mobile Menu */}
-//       {isOpen && (
-//         <div className="md:hidden bg-white px-4 pb-4 shadow-lg">
-//           <div className="my-4">
-//             <Searchbar onSearch={handleSearchFromNavbar} />
-//           </div>
-//           <div className="flex flex-col gap-3">
-//             <NavLink to="/signUp" onClick={() => setIsOpen(false)}>
-//               <Button
-//                 title="Create account"
-//                 borderColor="2px solid #FE7B23"
-//                 textColor="black"
-//               />
-//             </NavLink>
-//             <NavLink to="/logIn" onClick={() => setIsOpen(false)}>
-//               <Button title="Log In" bgColor="#FE7B23" textColor="white" />
-//             </NavLink>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Navbar;

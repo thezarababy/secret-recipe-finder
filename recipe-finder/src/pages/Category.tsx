@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Instance, { CATEGORIES_URL } from "../api/Instance";
 
 const Category = () => {
-  const [category, setCategory] = useState<any>([]);
+  
 
   const filterByCategory = async () => {
     try {
