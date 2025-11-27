@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Instance, { CATEGORIES_URL } from "../api/Instance";
 import { FiFilter } from "react-icons/fi";
 
-const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar }) => {
+const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
   const navigate = useNavigate();
 
   const [categories, setCategories] = useState<string[]>([]);
