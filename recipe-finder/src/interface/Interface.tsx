@@ -14,7 +14,7 @@ export interface SearchBarProps {
 }
 export interface NavbarProps {
   onOpenSidebar: () => void;
-
+  hideMainNav?: boolean;
   showAuthButtons?: boolean;
 }
 export interface SidebarProps {

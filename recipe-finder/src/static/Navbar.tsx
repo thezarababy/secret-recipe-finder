@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 import Instance, { CATEGORIES_URL } from "../api/Instance";
 import { FiFilter } from "react-icons/fi";
 
-const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
+const Navbar: React.FC<NavbarProps> = ({
+  onOpenSidebar,
+  showAuthButtons,
+  hideMainNav,
+}) => {
   const navigate = useNavigate();
 
   const [categories, setCategories] = useState<string[]>([]);
@@ -39,84 +43,85 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
   };
 
   return (
-    <div className="w-full bg-white shadow-lg pr-3">
-      <main className="flex justify-between items-center py-3">
+    <div className="w-full  bg-white shadow-lg pr-3">
+      <main className="flex justify-between items-center  py-3">
         {/* Logo */}
-        <div>
-          <NavLink to="/">
-            <img src={Logo} alt="logo" className="w-20" />
-          </NavLink>
-        </div>
+        <NavLink to="/">
+          <img src={Logo} alt="logo" className="w-20" />
+        </NavLink>
 
-        {/* Searchbar */}
-        <div className="md:block">
-          <Searchbar onSearch={handleSearchFromNavbar} />
-        </div>
-
-        {/* Right Section */}
-        <div className="flex items-center gap-6">
-          <div className="hidden md:flex gap-4 items-center">
-            {/* Favorites */}
-            <NavLink to="/favorite">
-              <p className="font-semibold hover:underline cursor-pointer">
-                Favorites
-              </p>
-            </NavLink>
-
-            {/* Category Dropdown */}
-            <div className="relative">
-              <button
-                type="button"
-                className="font-semibold cursor-pointer flex items-center gap-1"
-                onClick={() => setOpenCategory((prev) => !prev)}
-              >
-                <FiFilter size={18} />
-                Category
-              </button>
-
-              {openCategory && (
-                <div className="absolute right-0 mt-2 bg-white shadow-xl rounded-md py-2 w-44 z-50 border border-gray-200">
-                  {categories.length === 0 ? (
-                    <p className="px-3 py-2 text-gray-500 text-sm">
-                      Loading...
-                    </p>
-                  ) : (
-                    categories.map((cat) => (
-                      <button
-                        key={cat}
-                        onClick={() => handleCategorySelect(cat)}
-                        className="block w-full text-left px-3 py-2 text-sm hover:bg-gray-100"
-                      >
-                        {cat}
-                      </button>
-                    ))
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Auth Buttons */}
-            {showAuthButtons && (
-              <div className="flex gap-3">
-                <NavLink to="/signUp">
-                  <Button
-                    title="Create account"
-                    borderColor="2px solid #FE7B23"
-                    textColor="black"
-                  />
-                </NavLink>
-
-                <NavLink to="/logIn">
-                  <Button title="Log In" bgColor="#FE7B23" textColor="white" />
-                </NavLink>
-              </div>
-            )}
+        {/* Searchbar — hidden on landing */}
+        {!hideMainNav && (
+          <div className="md:block">
+            <Searchbar onSearch={handleSearchFromNavbar} />
           </div>
+        )}
 
-          {/* Mobile Sidebar Toggle */}
-          <button className="md:hidden" onClick={onOpenSidebar}>
-            <CgMenuOreos size={30} />
-          </button>
+        {/* Right section */}
+        <div className="flex items-center gap-6">
+          {!hideMainNav && (
+            <div className="hidden md:flex gap-4 items-center">
+              <NavLink to="/favorite">
+                <p className="font-semibold hover:underline cursor-pointer">
+                  Favorites
+                </p>
+              </NavLink>
+
+              <div className="relative">
+                <button
+                  className="font-semibold flex items-center gap-1"
+                  onClick={() => setOpenCategory(!openCategory)}
+                >
+                  <FiFilter size={18} />
+                  Category
+                </button>
+
+                {openCategory && (
+                  <div className="absolute right-0 mt-2 bg-white shadow-xl rounded-md py-2 w-44">
+                    {categories.length === 0 ? (
+                      <p className="px-3 py-2 text-gray-500 text-sm">
+                        Loading...
+                      </p>
+                    ) : (
+                      categories.map((cat) => (
+                        <button
+                          key={cat}
+                          onClick={() => handleCategorySelect(cat)}
+                          className="block w-full text-left px-3 py-2 text-sm hover:bg-gray-100"
+                        >
+                          {cat}
+                        </button>
+                      ))
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Auth buttons — ONLY on landing */}
+          {showAuthButtons && (
+            <div className="hidden md:flex gap-3">
+              <NavLink to="/signUp">
+                <Button
+                  title="Create account"
+                  borderColor="2px solid #FE7B23"
+                  textColor="black"
+                />
+              </NavLink>
+
+              <NavLink to="/logIn">
+                <Button title="Log In" bgColor="#FE7B23" textColor="white" />
+              </NavLink>
+            </div>
+          )}
+
+          {/* mobile menu */}
+          {!hideMainNav && (
+            <button className="md:hidden" onClick={onOpenSidebar}>
+              <CgMenuOreos size={30} />
+            </button>
+          )}
         </div>
       </main>
     </div>

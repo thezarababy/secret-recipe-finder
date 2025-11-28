@@ -6,7 +6,8 @@ const LandingLayout = () => {
     <div>
       <Navbar
         showAuthButtons={true}
-        onOpenSidebar={() => {}} // safe empty function
+        onOpenSidebar={() => {}}
+        hideMainNav={true} // safe empty function
       />
 
       <main>

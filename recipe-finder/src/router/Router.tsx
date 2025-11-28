@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomeLayout from "../Layout/HomeLayout";
 import LandingLayout from "../Layout/LandingLayout";
+import HomeLayout from "../Layout/HomeLayout";
 
+import Landing from "../pages/Landing";
 import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
@@ -11,10 +12,14 @@ import Favorites from "../pages/Favorites";
 import SearchPage from "../pages/SearchPage";
 
 const mainRoute = createBrowserRouter([
-  // 👉 Landing page layout (shows login + signup buttons)
+  // 👉 PUBLIC LANDING LAYOUT
   {
     element: <LandingLayout />,
     children: [
+      {
+        path: "/", // Landing page
+        element: <Landing />,
+      },
       {
         path: "/signUp",
         element: <SignUp />,
@@ -26,10 +31,14 @@ const mainRoute = createBrowserRouter([
     ],
   },
 
-  // 👉 Main pages layout (after login)
+  // 👉 MAIN APP LAYOUT
   {
     element: <HomeLayout />,
     children: [
+      {
+        path: "/home", // Actual dashboard/home after login
+        element: <Home />,
+      },
       {
         path: "/category",
         element: <Category />,
