@@ -14,7 +14,8 @@ export interface SearchBarProps {
 }
 export interface NavbarProps {
   onOpenSidebar: () => void;
-  collapsed: boolean;
+
+  showAuthButtons?: boolean;
 }
 export interface SidebarProps {
   isOpen: boolean;

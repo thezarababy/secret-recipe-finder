@@ -14,7 +14,6 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
   const [categories, setCategories] = useState<string[]>([]);
   const [openCategory, setOpenCategory] = useState(false);
 
-  // Fetch all categories
   const getAllCategories = async () => {
     try {
       const res = await Instance.get(CATEGORIES_URL);
@@ -25,18 +24,15 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
     }
   };
 
-  //  Fetch categories on first render
   useEffect(() => {
     getAllCategories();
   }, []);
 
-  //  When a user selects a category
   const handleCategorySelect = (cat: string) => {
     navigate(`/category?name=${encodeURIComponent(cat)}`);
     setOpenCategory(false);
   };
 
-  //  Search handler
   const handleSearchFromNavbar = (q: string) => {
     if (!q.trim()) return;
     navigate(`/search?query=${encodeURIComponent(q.trim())}`);
@@ -44,20 +40,20 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
 
   return (
     <div className="w-full bg-white shadow-lg pr-3">
-      <main className="flex justify-between items-center  py-3">
-        {/* logo */}
+      <main className="flex justify-between items-center py-3">
+        {/* Logo */}
         <div>
           <NavLink to="/">
             <img src={Logo} alt="logo" className="w-20" />
           </NavLink>
         </div>
 
-        {/* searchbar */}
+        {/* Searchbar */}
         <div className="md:block">
           <Searchbar onSearch={handleSearchFromNavbar} />
         </div>
 
-        {/* Right section */}
+        {/* Right Section */}
         <div className="flex items-center gap-6">
           <div className="hidden md:flex gap-4 items-center">
             {/* Favorites */}
@@ -100,20 +96,24 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
             </div>
 
             {/* Auth Buttons */}
-            <NavLink to="/signUp">
-              <Button
-                title="Create account"
-                borderColor="2px solid #FE7B23"
-                textColor="black"
-              />
-            </NavLink>
+            {showAuthButtons && (
+              <div className="flex gap-3">
+                <NavLink to="/signUp">
+                  <Button
+                    title="Create account"
+                    borderColor="2px solid #FE7B23"
+                    textColor="black"
+                  />
+                </NavLink>
 
-            <NavLink to="/logIn">
-              <Button title="Log In" bgColor="#FE7B23" textColor="white" />
-            </NavLink>
+                <NavLink to="/logIn">
+                  <Button title="Log In" bgColor="#FE7B23" textColor="white" />
+                </NavLink>
+              </div>
+            )}
           </div>
 
-          {/* Mobile sidebar toggle */}
+          {/* Mobile Sidebar Toggle */}
           <button className="md:hidden" onClick={onOpenSidebar}>
             <CgMenuOreos size={30} />
           </button>

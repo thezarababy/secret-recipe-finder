@@ -4,7 +4,11 @@ import { Outlet } from "react-router-dom";
 const LandingLayout = () => {
   return (
     <div>
-      <Navbar showAuthButtons={true} /> {/* show login/signup */}
+      <Navbar
+        showAuthButtons={true}
+        onOpenSidebar={() => {}} // safe empty function
+      />
+
       <main>
         <Outlet />
       </main>
