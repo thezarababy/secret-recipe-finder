@@ -8,16 +8,13 @@ import { useEffect, useState } from "react";
 import Instance, { CATEGORIES_URL } from "../api/Instance";
 import { FiFilter } from "react-icons/fi";
 
-const Navbar: React.FC<NavbarProps> = ({
-  onOpenSidebar,
-  showAuthButtons,
-  hideMainNav,
-}) => {
+const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
   const navigate = useNavigate();
 
   const [categories, setCategories] = useState<string[]>([]);
   const [openCategory, setOpenCategory] = useState(false);
 
+  // Fetch categories
   const getAllCategories = async () => {
     try {
       const res = await Instance.get(CATEGORIES_URL);
@@ -29,9 +26,10 @@ const Navbar: React.FC<NavbarProps> = ({
   };
 
   useEffect(() => {
-    getAllCategories();
-  }, []);
+    if (!showAuthButtons) getAllCategories(); // Only fetch categories on main site
+  }, [showAuthButtons]);
 
+  // Navigation for selecting categories
   const handleCategorySelect = (cat: string) => {
     navigate(`/category?name=${encodeURIComponent(cat)}`);
     setOpenCategory(false);
@@ -43,23 +41,25 @@ const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <div className="w-full  bg-white shadow-lg pr-3">
-      <main className="flex justify-between items-center  py-3">
+    <div className="w-full bg-white shadow-lg pr-3">
+      <main className=" max-w-[1200px] mx-auto  flex justify-between items-center  py-3">
         {/* Logo */}
-        <NavLink to="/">
-          <img src={Logo} alt="logo" className="w-20" />
-        </NavLink>
+        <div>
+          <NavLink to="/">
+            <img src={Logo} alt="logo" className="w-20" />
+          </NavLink>
+        </div>
 
-        {/* Searchbar — hidden on landing */}
-        {!hideMainNav && (
+        {/* Searchbar → HIDDEN on landing page */}
+        {!showAuthButtons && (
           <div className="md:block">
             <Searchbar onSearch={handleSearchFromNavbar} />
           </div>
         )}
 
-        {/* Right section */}
         <div className="flex items-center gap-6">
-          {!hideMainNav && (
+          {/* Right section desktop → Hidden on landing page */}
+          {!showAuthButtons && (
             <div className="hidden md:flex gap-4 items-center">
               <NavLink to="/favorite">
                 <p className="font-semibold hover:underline cursor-pointer">
@@ -67,17 +67,19 @@ const Navbar: React.FC<NavbarProps> = ({
                 </p>
               </NavLink>
 
+              {/* Category dropdown */}
               <div className="relative">
                 <button
-                  className="font-semibold flex items-center gap-1"
-                  onClick={() => setOpenCategory(!openCategory)}
+                  type="button"
+                  className="font-semibold cursor-pointer flex items-center gap-1"
+                  onClick={() => setOpenCategory((prev) => !prev)}
                 >
                   <FiFilter size={18} />
                   Category
                 </button>
 
                 {openCategory && (
-                  <div className="absolute right-0 mt-2 bg-white shadow-xl rounded-md py-2 w-44">
+                  <div className="absolute right-0 mt-2 bg-white shadow-xl rounded-md py-2 w-44 z-50 border border-gray-200">
                     {categories.length === 0 ? (
                       <p className="px-3 py-2 text-gray-500 text-sm">
                         Loading...
@@ -99,9 +101,9 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
           )}
 
-          {/* Auth buttons — ONLY on landing */}
+          {/* Auth Buttons → ONLY shown on landing page */}
           {showAuthButtons && (
-            <div className="hidden md:flex gap-3">
+            <div className="hidden md:flex gap-4 items-center">
               <NavLink to="/signUp">
                 <Button
                   title="Create account"
@@ -109,15 +111,32 @@ const Navbar: React.FC<NavbarProps> = ({
                   textColor="black"
                 />
               </NavLink>
-
               <NavLink to="/logIn">
                 <Button title="Log In" bgColor="#FE7B23" textColor="white" />
               </NavLink>
             </div>
           )}
 
-          {/* mobile menu */}
-          {!hideMainNav && (
+          {/* Mobile Auth buttons */}
+          {showAuthButtons && (
+            <div className="md:hidden flex ">
+              <NavLink
+                to="/signUp"
+                className="font-semibold hover: text-orange-400"
+              >
+                <Button title="Create account" textColor="black" />
+              </NavLink>
+              <NavLink
+                to="/logIn"
+                className="font-semibold hover: text-orange-400"
+              >
+                <Button title="Log In" textColor="black" />
+              </NavLink>
+            </div>
+          )}
+
+          {/* Mobile sidebar toggle → Hidden on landing page */}
+          {!showAuthButtons && (
             <button className="md:hidden" onClick={onOpenSidebar}>
               <CgMenuOreos size={30} />
             </button>
