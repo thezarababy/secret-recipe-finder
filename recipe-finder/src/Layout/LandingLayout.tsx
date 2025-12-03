@@ -1,3 +1,4 @@
+import Footer from "../static/Footer";
 import Navbar from "../static/Navbar";
 import { Outlet } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const LandingLayout = () => {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };

@@ -3,11 +3,15 @@ import { useNavigate } from "react-router-dom";
 import bgFood2 from "../assets/bgFood2.jpg";
 import AuthInstance from "../api/AuthInstance";
 import toast from "react-hot-toast";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 const SignUp = () => {
   const navigate = useNavigate();
-
+  const [showPassword, hidePassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    hidePassword(!showPassword);
+  };
   const [form, setForm] = useState({
-    FullName: "",
+    Fullname: "",
     Email: "",
     Password: "",
   });
@@ -23,6 +27,7 @@ const SignUp = () => {
       navigate("/login");
     } catch (error) {
       toast.error("Error creating account. Please try again.");
+      console.error("Signup error:", error);
     }
   };
 
@@ -45,7 +50,7 @@ const SignUp = () => {
             <input
               onChange={handleFormChange}
               type="text"
-              id="FullName"
+              id="Fullname"
               placeholder="Enter your full name"
               className="rounded-lg border-0 bg-gray-300  px-3 py-2 w-full max-w-[600px]"
             />
@@ -59,14 +64,20 @@ const SignUp = () => {
               className="rounded-lg border-0 bg-gray-300  px-3 py-2 w-full max-w-[600px]"
             />
           </div>
-          <div>
+          <div className="relative">
             <input
               onChange={handleFormChange}
               type="password"
               id="Password"
               placeholder="Enter your password"
-              className="rounded-lg border-0 bg-gray-300  px-3 py-2  w-full max-w-[600px]"
+              className="  rounded-lg border-0 bg-gray-300  px-3 py-2  w-full max-w-[600px]"
             />
+            <span
+              onClick={togglePasswordVisibility}
+              className="cursor-pointer absolute top-2 right-35"
+            >
+              {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+            </span>
           </div>
           <button
             type="submit"

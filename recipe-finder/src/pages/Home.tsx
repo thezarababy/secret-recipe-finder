@@ -31,7 +31,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className=" w-fit mx-auto py-9 px-9 max-sm:px-4">
+    <div className="   max-w-[1200px] pt-20 w-fit mx-auto py-9 px-9 max-sm:px-4">
       <h1 className="text-3xl font-bold text-center pb-5 max-sm:text-lg">
         Discover Delicious Recipes Instantly{" "}
       </h1>

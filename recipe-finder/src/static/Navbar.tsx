@@ -41,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
   };
 
   return (
-    <div className="w-full bg-white shadow-lg pr-3">
+    <div className="w-full sticky top-0  bg-white  pr-3">
       <main className=" max-w-[1200px] mx-auto  flex justify-between items-center  py-3">
         {/* Logo */}
         <div>

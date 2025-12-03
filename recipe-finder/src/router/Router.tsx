@@ -10,6 +10,7 @@ import Category from "../pages/Category";
 import RecipeDetails from "../pages/RecipeDetails";
 import Favorites from "../pages/Favorites";
 import SearchPage from "../pages/SearchPage";
+import AuthLayout from "../Layout/AuthLayout";
 
 const mainRoute = createBrowserRouter([
   // 👉 PUBLIC LANDING LAYOUT
@@ -20,6 +21,13 @@ const mainRoute = createBrowserRouter([
         path: "/", // Landing page
         element: <Landing />,
       },
+    ],
+  },
+
+  // Auth layout
+  {
+    element: <AuthLayout />,
+    children: [
       {
         path: "/signUp",
         element: <SignUp />,
