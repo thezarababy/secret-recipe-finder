@@ -1,3 +1,4 @@
+import React from "react";
 import Logo from "../assets/Logo.png";
 import Button from "../component/reuseable/Button";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -45,9 +46,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
       <main className=" max-w-[1200px] mx-auto  flex justify-between items-center  py-3">
         {/* Logo */}
         <div>
-          <NavLink to="/">
-            <img src={Logo} alt="logo" className="w-20" />
-          </NavLink>
+          <img src={Logo} alt="logo" className="w-20" />
         </div>
 
         {/* Searchbar → HIDDEN on landing page */}

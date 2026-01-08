@@ -21,7 +21,7 @@ const Footer = () => {
 
         {/* Links */}
         <div className="flex flex-row  gap-3 text-center  hover:cursor-pointer max-sm:gap-2  ">
-          <Link to="/" className="text-white text-lg  hover:underline">
+          <Link to="/home" className="text-white text-lg  hover:underline">
             Home
           </Link>
           <Link to="/category" className="text-white text-lg  hover:underline">
