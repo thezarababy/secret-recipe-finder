@@ -41,11 +41,30 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
     navigate(`/search?query=${encodeURIComponent(q.trim())}`);
   };
 
+  const goBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/home");
+    }
+  };
+
   return (
     <div className="w-full sticky top-0  bg-white  pr-3">
       <main className=" max-w-[1200px] mx-auto  flex justify-between items-center  py-3">
         {/* Logo */}
-        <div>
+        <div
+          className="cursor-pointer"
+          onClick={goBack}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+              goBack();
+            }
+          }}
+          title="Go back"
+        >
           <img src={Logo} alt="logo" className="w-20" />
         </div>
 

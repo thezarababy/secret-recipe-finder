@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcSearch } from "react-icons/fc";
 import {
   FaFacebookSquare,
@@ -7,12 +7,31 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const goBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/home");
+    }
+  };
   return (
     <footer className="bg-orange-500 px-10 pt-6 pb-4  max-w-[1200px] mx-auto">
       {/* Top section */}
       <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
         {/* Logo */}
-        <div className="flex items-center gap-4">
+        <div
+          className="flex items-center gap-4 cursor-pointer"
+          onClick={goBack}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+              goBack();
+            }
+          }}
+          title="Go back"
+        >
           <h1 className="text-3xl bg-white px-4 py-2 rounded-lg font-bold max-sm:text-lg max-sm:font-semibold sm:px-1.5">
             Recipe Finder
           </h1>
