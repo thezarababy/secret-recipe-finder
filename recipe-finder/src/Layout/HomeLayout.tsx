@@ -14,10 +14,10 @@ const HomeLayout = () => {
         {/* Navbar */}
         <Navbar onOpenSidebar={() => setSidebarOpen(true)} />
 
-        {/* Page Content (fills space & pushes footer down) */}
+        
         <main className=" flex w-full">
           <div>
-            {/* Sidebar - full height of layout, not fixed */}
+            
             <Sidebar
               isOpen={sidebarOpen}
               onClose={() => setSidebarOpen(false)}
@@ -26,7 +26,7 @@ const HomeLayout = () => {
           <Outlet />
         </main>
 
-        {/* Footer stays at bottom and scrolls normally */}
+        
         <Footer />
       </div>
     </div>

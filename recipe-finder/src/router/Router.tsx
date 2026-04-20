@@ -13,38 +13,12 @@ import SearchPage from "../pages/SearchPage";
 import AuthLayout from "../Layout/AuthLayout";
 
 const mainRoute = createBrowserRouter([
-  // 👉 PUBLIC LANDING LAYOUT
-  {
-    element: <LandingLayout />,
-    children: [
-      {
-        path: "/", // Landing page
-        element: <Landing />,
-      },
-    ],
-  },
-
-  // Auth layout
-  {
-    element: <AuthLayout />,
-    children: [
-      {
-        path: "/signUp",
-        element: <SignUp />,
-      },
-      {
-        path: "/logIn",
-        element: <Login />,
-      },
-    ],
-  },
-
-  // 👉 MAIN APP LAYOUT
+  //  MAIN APP LAYOUT
   {
     element: <HomeLayout />,
     children: [
       {
-        path: "/home", // Actual dashboard/home after login
+        path: "/",
         element: <Home />,
       },
       {

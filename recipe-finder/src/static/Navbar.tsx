@@ -45,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, showAuthButtons }) => {
     if (window.history.length > 1) {
       navigate(-1);
     } else {
-      navigate("/home");
+      navigate("/");
     }
   };
 

@@ -12,11 +12,11 @@ const Footer = () => {
     if (window.history.length > 1) {
       navigate(-1);
     } else {
-      navigate("/home");
+      navigate("/");
     }
   };
   return (
-    <footer className="bg-orange-500 px-10 pt-6 pb-4  max-w-[1200px] mx-auto">
+    <footer className="bg-orange-500 px-10 pt-6 pb-4  w-full mx-auto">
       {/* Top section */}
       <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
         {/* Logo */}
@@ -40,7 +40,7 @@ const Footer = () => {
 
         {/* Links */}
         <div className="flex flex-row  gap-3 text-center  hover:cursor-pointer max-sm:gap-2  ">
-          <Link to="/home" className="text-white text-lg  hover:underline">
+          <Link to="/" className="text-white text-lg  hover:underline">
             Home
           </Link>
           <Link to="/category" className="text-white text-lg  hover:underline">
